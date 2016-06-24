@@ -32,11 +32,14 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
 
       <ResolutionsForm /> {/* we can copy and paste this more times throughout our app and it will work the same :) - that's the power of react components */}
 
-        <div>
-          <ResolutionSingle resolution={res[0]} />
-
-        {/* comment this out: {res[0].text} */}
-        </div>
+        <ul className="resolutions">
+          {this.resolutions().map( (resolution) => {
+          {/* the key here needs to be there because React demands that everytime you loop and render something like this, it has a unique key for each item */}
+            return <ResolutionSingle key={this._id} resolution={resolution} />
+          })}
+          {/*<ResolutionSingle resolution={res[0]} />*/}
+          {/* comment this out: {res[0].text} */}
+        </ul>
       </div>
     )
   }
