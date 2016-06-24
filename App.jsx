@@ -1,7 +1,8 @@
 import React from 'react';
 import {render} from "react-dom";
 
-class App extends React.Component {
+//by having default, whatever imports this file, you don't need to use curly brackets when importing it
+export default class App extends React.Component {
   render(){
     return (
       <div>
@@ -11,8 +12,8 @@ class App extends React.Component {
   }
 }
 
-if (Meteor.isClient) {
-  Meteor.startup(function(){
-    render(<App />, document.getElementById("render-target"));
-  });
-}
+// if (Meteor.isClient) {
+//   Meteor.startup(function(){
+//     render(<App />, document.getElementById("render-target"));
+//   });
+// }
