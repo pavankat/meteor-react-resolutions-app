@@ -47,3 +47,10 @@ Resolutions.find() - would return all the data - for some reason doesn't for me
 so we'll remove that
 
 meteor remove autopublish
+
+## adding accounts
+
+meteor add accounts-ui
+meteor add accounts-password
+
+after putting in the pieces AccountsUI.jsx and the edit to MainLayout.jsx, you're done - you go into the console of chrome and if you sign up you can do Meteor.userId() and see the user id of the logged in user

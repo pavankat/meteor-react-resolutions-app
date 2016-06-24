@@ -3,11 +3,11 @@ import React, {Component} from 'react'; //we can have access to it without havin
 export default class ResolutionSingle extends Component {
   toggleChecked(){
     //console.log(this)
-    Meteor.call('toggleResolution', this.props.resolution._id, this.props.resolution.complete);
+    Meteor.call('toggleResolution', this.props.resolution);
   }
 
   deleteResolution(){
-    Meteor.call('deleteResolution', this.props.resolution._id);
+    Meteor.call('deleteResolution', this.props.resolution);
   }
 
   render(){

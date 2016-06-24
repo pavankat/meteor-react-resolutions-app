@@ -18,7 +18,8 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
       //without TrackerReact, you can't do the following:
       //if we change what gets published in publish.js then what's available in the front end (see with ctrl + m) is limited to just that.
       subscription: {
-        resolutions : Meteor.subscribe('allResolutions')
+        //resolutions : Meteor.subscribe('allResolutions')
+        resolutions : Meteor.subscribe('userResolutions')
       }
     }
   }
