@@ -4,11 +4,12 @@ import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import ResolutionsForm from './ResolutionsForm'
 import ResolutionSingle from './ResolutionSingle'
 
+//this won't work here if this file isn't in the root of the application. So we have to put a copy of it in it's own file in the server folder (weird)
 Resolutions = new Mongo.Collection("resolutions");
 
 //by having default, whatever imports this file, you don't need to use curly brackets when importing it
 //we only use TrackerReact when we pull in data
-export default class App extends TrackerReact(React.Component) {
+export default class ResolutionsWrapper extends TrackerReact(React.Component) {
 //used to be (before TrackerReact): export default class App extends React.Component {
 
   resolutions() {

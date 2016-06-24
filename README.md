@@ -20,3 +20,6 @@ ctrl + m to hide
 getMeteorData() and mixins aren't viable solutions for Meteor 1.3 which is what we're using right now. They're solid for previous verions of Meteor.
 
 meteor add ultimatejs:tracker-react
+
+meteor add stolinski:stylus-multi
+- this has styles 
