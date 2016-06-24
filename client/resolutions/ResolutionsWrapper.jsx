@@ -12,6 +12,22 @@ Resolutions = new Mongo.Collection("resolutions");
 export default class ResolutionsWrapper extends TrackerReact(React.Component) {
 //used to be (before TrackerReact): export default class App extends React.Component {
 
+  constructor(){
+    super();
+    this.state = {
+      //without TrackerReact, you can't do the following:
+      //if we change what gets published in publish.js then what's available in the front end (see with ctrl + m) is limited to just that.
+      subscription: {
+        resolutions : Meteor.subscribe('allResolutions')
+      }
+    }
+  }
+
+  //when this component unmounts, we don't want to subscribe to this data
+  componentWillUnmount() {
+    this.state.subscription.resolutions.stop();
+  }
+
   resolutions() {
     return Resolutions.find().fetch(); //only .find() returns a cursor (meteor), .fetch returns us the object
   }
@@ -22,9 +38,10 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
     let res = this.resolutions();
 
     //if we don't have this here then we can't display res on the page due to it not being available right away
-    if (res.length < 1 ){
-      return (<div>Loading</div>)
-    }
+    //but after we commented it out, this isn't an issue anymore
+    // if (res.length < 1 ){
+    //   return (<div>Loading</div>)
+    // }
 
     return (
       <div>

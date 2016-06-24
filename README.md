@@ -27,6 +27,7 @@ meteor add stolinski:stylus-multi
 ## security
 anyone can come to your site and add, view your database from your console.
 Resolutions.insert({text: "sup", complete: 0})
+- would insert a resolution but for some reason didn't for me the second time around - probably because I removed the insecure package
 
 now check your database, you'll see that it got put there.
 
@@ -37,3 +38,12 @@ but after you take that out, you can't have your addResolution function in Resol
 
 so you leverage Meteor.methods
 we made a methods.js file in the server folder.
+
+## remove autopublish
+autopublish allows everyone to have access to everyone's resolutions
+
+Resolutions.find() - would return all the data - for some reason doesn't for me
+
+so we'll remove that
+
+meteor remove autopublish
