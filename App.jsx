@@ -1,35 +1,41 @@
 import React from 'react';
 import {render} from "react-dom";
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
+import ResolutionsForm from './ResolutionsForm'
+import ResolutionSingle from './ResolutionSingle'
 
 Resolutions = new Mongo.Collection("resolutions");
 
 //by having default, whatever imports this file, you don't need to use curly brackets when importing it
-export default class App extends React.Component {
+//we only use TrackerReact when we pull in data
+export default class App extends TrackerReact(React.Component) {
+//used to be (before TrackerReact): export default class App extends React.Component {
 
-  addResolution(event){
-    event.preventDefault();
-    //console.log(this); //this would console.log the entire component, you can see value which would be the value of the input
-
-    var text = this.refs.resolution.value.trim();
-    console.log(text)
-
-    Resolutions.insert({
-      text: text,
-      complete: false,
-      createdAt: new Date()
-    })
-
-    this.refs.resolution.value = ""; //clear the input after we submit
+  resolutions() {
+    return Resolutions.find().fetch(); //only .find() returns a cursor (meteor), .fetch returns us the object
   }
 
   render(){
+    //console.log(this.resolutions()); //see this in the chrome console.
+
+    let res = this.resolutions();
+
+    //if we don't have this here then we can't display res on the page due to it not being available right away
+    if (res.length < 1 ){
+      return (<div>Loading</div>)
+    }
+
     return (
       <div>
         <h1>My Resolutions</h1>
-        <form className="new-resolution" onSubmit={this.addResolution.bind(this)}>
-          <input type="text" ref="resolution" placeholder="Enter your resolution" />  {/* this is a comment! ref is how we can refer to this input later */}
 
-        </form>
+      <ResolutionsForm /> {/* we can copy and paste this more times throughout our app and it will work the same :) - that's the power of react components */}
+
+        <div>
+          <ResolutionSingle resolution={res[0]} />
+
+        {/* comment this out: {res[0].text} */}
+        </div>
       </div>
     )
   }

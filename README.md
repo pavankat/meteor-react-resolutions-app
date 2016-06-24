@@ -16,3 +16,7 @@ after this is done, you can see it in the packages file of the .meteor folder
 npm install --save react-mounter
 meteor add meteortoys:allthings
 ctrl + m to hide
+
+getMeteorData() and mixins aren't viable solutions for Meteor 1.3 which is what we're using right now. They're solid for previous verions of Meteor.
+
+meteor add ultimatejs:tracker-react
