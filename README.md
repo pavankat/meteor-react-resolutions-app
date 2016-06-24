@@ -22,4 +22,18 @@ getMeteorData() and mixins aren't viable solutions for Meteor 1.3 which is what 
 meteor add ultimatejs:tracker-react
 
 meteor add stolinski:stylus-multi
-- this has styles 
+- this has styles - we still have to make styles.styl
+
+## security
+anyone can come to your site and add, view your database from your console.
+Resolutions.insert({text: "sup", complete: 0})
+
+now check your database, you'll see that it got put there.
+
+meteor remove insecure
+- really great for working on a prototype
+
+but after you take that out, you can't have your addResolution function in ResolutionsForm.jsx file on the front end.
+
+so you leverage Meteor.methods
+we made a methods.js file in the server folder.

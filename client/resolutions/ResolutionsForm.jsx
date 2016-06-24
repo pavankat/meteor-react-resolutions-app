@@ -9,15 +9,19 @@ export default class ResolutionsForm extends Component {
     var text = this.refs.resolution.value.trim();
     console.log(text)
 
-    Resolutions.insert({
-      text: text,
-      complete: false,
-      createdAt: new Date()
+    //by taking out insecure, you can't do this anymore
+    // Resolutions.insert({
+    //   text: text,
+    //   complete: false,
+    //   createdAt: new Date()
+    // })
+
+    //executing the method in methods.js from server.js
+    //()=> let's us use the scope from above the anonymous function inside the anonymous function, so we can access this above the anonymous function
+    Meteor.call('addResolution', text, ()=>{
+      this.refs.resolution.value = ""; //clear the input after we submit
     })
-
-    this.refs.resolution.value = ""; //clear the input after we submit
   }
-
 
   render(){
 

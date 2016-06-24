@@ -4,7 +4,7 @@ export default class ResolutionSingle extends Component {
   render(){
 
     return (
-      <li>
+      <li id="{this.props.resolution._id}">
         {this.props.resolution.text}
         <br /> {/* need the trailing / to make this work */}
         {this.props.resolution.complete.toString()}

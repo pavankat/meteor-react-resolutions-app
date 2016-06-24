@@ -35,7 +35,7 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
         <ul className="resolutions">
           {this.resolutions().map( (resolution) => {
           {/* the key here needs to be there because React demands that everytime you loop and render something like this, it has a unique key for each item */}
-            return <ResolutionSingle key={this._id} resolution={resolution} />
+            return <ResolutionSingle key={resolution._id} resolution={resolution} />
           })}
           {/*<ResolutionSingle resolution={res[0]} />*/}
           {/* comment this out: {res[0].text} */}
