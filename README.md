@@ -14,3 +14,5 @@ meteor add kadira:flow-router
 after this is done, you can see it in the packages file of the .meteor folder
 
 npm install --save react-mounter
+meteor add meteortoys:allthings
+ctrl + m to hide
