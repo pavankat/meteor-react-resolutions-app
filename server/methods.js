@@ -2,6 +2,8 @@
 Meteor.methods({
   addResolution(resolution){
 
+    check(resolution, String)
+
     //don't let someone not loggedin insert a resolution
     if (!Meteor.userId()){
       throw new Meteor.Error('not-authorized')
@@ -15,6 +17,9 @@ Meteor.methods({
     })
   },
   toggleResolution(resolution){
+
+    check(resolution, Object)
+
     //must be owner of resolutions to toggle them
     if (Meteor.userId() !== resolution.user){
       throw new Meteor.Error('not-authorized')
@@ -24,6 +29,9 @@ Meteor.methods({
     })
   },
   deleteResolution(resolution){
+
+    check(resolution, Object)
+
     //must be owner of resolutions to delete them
     if (Meteor.userId() !== resolution.user){
       throw new Meteor.Error('not-authorized')

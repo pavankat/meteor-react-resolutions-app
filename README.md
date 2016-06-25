@@ -72,3 +72,14 @@ then in console you can do Meteor.settings.public.test
 
 private is available only on the server
 public is available everywhere
+
+## security
+meteor add check
+
+it allows us to check our code before it goes on our servers
+
+so if anything comes into a method other than a string we don't want it in there. This is because anyone can enter anything into our forms now. Perhaps an object, etc.
+
+so in the console if I did Meteor.call('addResolution', 22) //this will fail
+
+an alternative to check is the simple schema meteor package
