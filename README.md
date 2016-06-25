@@ -60,3 +60,15 @@ after putting in the pieces AccountsUI.jsx and the edit to MainLayout.jsx, you'r
 meteor add themeteorchef:bert
 
 https://github.com/themeteorchef/bert
+
+## settings
+
+settings.json file good to store your api keys and what not
+- we're going to push it up anyway, but you should add it to your .gitignore file.
+
+after making it, restart your server with this command: meteor --settings settings.json
+
+then in console you can do Meteor.settings.public.test
+
+private is available only on the server
+public is available everywhere
