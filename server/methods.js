@@ -46,22 +46,20 @@ Meteor.methods({
   },
   randomResolutionCreation(){
 
-    //res = Resolutions.aggregate( { $sample: { size: 1 } } )
-    res = Resolutions.find();
+      let res = Resolutions.find().fetch();
+      let randomIndex = Math.floor( Math.random() * res.length );
 
-    var rand = res[Math.floor(Math.random() * res.length)];
+      let randomRes = res[randomIndex];
 
-    console.log(rand.text)
+      console.log(randomRes.text)
 
-    // Resolutions.insert({
-    //   text: 'sdjlkfasdlkfjkldsf',
-    //   complete: false,
-    //   createdAt: new Date(),
-    //   user: "tBzzDbKGaSTNfEiQQ"
-    // })
+      Resolutions.insert({
+        text: randomRes.text,
+        complete: randomRes.complete,
+        createdAt: new Date(),
+        user: randomRes.user
+      })
 
-    //what I have to do
-    //I need to grab a random resolution and clone it but add the word lisa to the text
   },
   deleteResolution(resolution){
 
