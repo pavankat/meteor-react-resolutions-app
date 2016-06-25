@@ -1,4 +1,4 @@
-Resolutions = new Mongo.Collection("resolutions");
+export const Resolutions = new Mongo.Collection("resolutions");
 
 //giving all the resolutions
 Meteor.publish("allResolutions", function(){
