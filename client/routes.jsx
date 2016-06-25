@@ -6,7 +6,15 @@ import {MainLayout} from './layouts/MainLayout.jsx';
 import ResolutionsWrapper from './resolutions/ResolutionsWrapper.jsx';
 import About from './About.jsx';
 import ResolutionDetail from './resolutions/ResolutionDetail.jsx';
+import Frankie from './Frankie.jsx'
 
+FlowRouter.route('/frankie', {
+  action() {
+    mount(MainLayout, {
+      content : (<Frankie />)
+    })
+  }
+});
 
 FlowRouter.route('/', {
   action() {
