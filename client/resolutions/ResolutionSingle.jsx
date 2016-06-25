@@ -19,15 +19,17 @@ export default class ResolutionSingle extends Component {
 
     return (
       <li className={resolutionClass} id={this.props.resolution._id}>
+        <button className="btn-cancel" onClick={this.deleteResolution.bind(this)}>
+        x
+        </button>
+        
         <input type="checkbox" readOnly={true} checked={this.props.resolution.complete} onClick={this.toggleChecked.bind(this)} /> {/* makes sure we're utilizing the correct this */}
         {/* ${this.props.resolution._id} is string interpolation*/}
         <a href={`/resolutions/${this.props.resolution._id}`}>{this.props.resolution.text}</a>
         <br /> {/* need the trailing / to make this work */}
         {/* uncomment this to see the status this.props.resolution.complete.toString() */}
         {status}
-        <button className="btn-cancel" onClick={this.deleteResolution.bind(this)}>
-        x
-        </button>
+
       </li>
     )
   }

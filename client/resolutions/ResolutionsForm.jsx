@@ -21,9 +21,10 @@ export default class ResolutionsForm extends Component {
 
     if (text){
       Meteor.call('addResolution', text, (error, data)=>{
+        console.log(error)
         if (error){
           Bert.alert( 'You must be logged in to add a resolution', 'danger', 'fixed-top', 'fa-frown-o' );
-        } else {
+        }else {
           this.refs.resolution.value = ""; //clear the input after we submit
         }
       })

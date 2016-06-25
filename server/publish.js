@@ -1,4 +1,8 @@
-export const Resolutions = new Mongo.Collection("resolutions");
+//import { Mongo } from 'meteor/mongo';
+
+//export const
+
+Resolutions = new Mongo.Collection("resolutions");
 
 //giving all the resolutions
 Meteor.publish("allResolutions", function(){

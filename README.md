@@ -83,3 +83,9 @@ so if anything comes into a method other than a string we don't want it in there
 so in the console if I did Meteor.call('addResolution', 22) //this will fail
 
 an alternative to check is the simple schema meteor package
+
+## animations
+
+npm install --save react-addons-css-transition-group
+
+dynamically adds classes onto elements for us
