@@ -48,7 +48,7 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
       <div>
         <h1>My Resolutions - {Session.get('test')}</h1>
 
-      <ResolutionsForm /> {/* we can copy and paste this more times throughout our app and it will work the same :) - that's the power of react components */}
+        <ResolutionsForm /> {/* we can copy and paste this more times throughout our app and it will work the same :) - that's the power of react components */}
 
         <ul className="resolutions">
           {this.resolutions().map( (resolution) => {

@@ -22,7 +22,7 @@ export default class ResolutionSingle extends Component {
         <input type="checkbox" readOnly={true} checked={this.props.resolution.complete} onClick={this.toggleChecked.bind(this)} /> {/* makes sure we're utilizing the correct this */}
         {this.props.resolution.text}
         <br /> {/* need the trailing / to make this work */}
-      {/* uncomment this to see the status this.props.resolution.complete.toString() */}
+        {/* uncomment this to see the status this.props.resolution.complete.toString() */}
         {status}
         <button className="btn-cancel" onClick={this.deleteResolution.bind(this)}>
         x

@@ -18,9 +18,19 @@ export default class ResolutionsForm extends Component {
 
     //executing the method in methods.js from server.js
     //()=> let's us use the scope from above the anonymous function inside the anonymous function, so we can access this above the anonymous function
-    Meteor.call('addResolution', text, ()=>{
-      this.refs.resolution.value = ""; //clear the input after we submit
-    })
+
+    if (text){
+      Meteor.call('addResolution', text, (error, data)=>{
+        if (error){
+          Bert.alert( 'You must be logged in to add a resolution', 'danger', 'fixed-top', 'fa-frown-o' );
+        } else {
+          this.refs.resolution.value = ""; //clear the input after we submit
+        }
+      })
+    }else{
+      Bert.alert( 'You must type some text in to add a resolution', 'danger', 'fixed-top', 'fa-frown-o' );
+    }
+
   }
 
   render(){

@@ -54,3 +54,9 @@ meteor add accounts-ui
 meteor add accounts-password
 
 after putting in the pieces AccountsUI.jsx and the edit to MainLayout.jsx, you're done - you go into the console of chrome and if you sign up you can do Meteor.userId() and see the user id of the logged in user
+
+## notifications
+
+meteor add themeteorchef:bert
+
+https://github.com/themeteorchef/bert
