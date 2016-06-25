@@ -7,6 +7,15 @@ import ResolutionsWrapper from './resolutions/ResolutionsWrapper.jsx';
 import About from './About.jsx';
 import ResolutionDetail from './resolutions/ResolutionDetail.jsx';
 import Frankie from './Frankie.jsx'
+import Nicole from './Nicole.jsx'
+
+FlowRouter.route('/nicole', {
+  action() {
+    mount(MainLayout, {
+      content : (<Nicole />)
+    })
+  }
+});
 
 FlowRouter.route('/frankie', {
   action() {

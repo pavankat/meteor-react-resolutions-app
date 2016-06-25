@@ -34,6 +34,10 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
     return Resolutions.find().fetch(); //only .find() returns a cursor (meteor), .fetch returns us the object
   }
 
+  ranResCrea() {
+    Meteor.call('randomResolutionCreation')
+  }
+
   render(){
     //console.log(this.resolutions()); //see this in the chrome console.
 
@@ -47,23 +51,23 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
 
     return (
       <div>
-          <h1>My Resolutions {Session.get('test')}</h1>
+          <h1>My Resolutions {Session.get('david')}</h1>
 
           <ResolutionsForm /> {/* we can copy and paste this more times throughout our app and it will work the same :) - that's the power of react components */}
 
-          <ReactCSSTransitionGroup
-            component="ul"
-            className="resolutions"
-            transitionName="resolutionLoad"
-            transitionEnterTimeout={600}
-            transitionLeaveTimeout={400}>
+          <button className="btn-success" onClick={this.ranResCrea}>
+            Clone random resolution
+          </button>
+
+          <ul>
               {this.resolutions().map( (resolution) => {
               {/* the key here needs to be there because React demands that everytime you loop and render something like this, it has a unique key for each item */}
+                console.log(resolution)
                 return <ResolutionSingle key={resolution._id} resolution={resolution} />
               })}
               {/*<ResolutionSingle resolution={res[0]} />*/}
               {/* comment this out: {res[0].text} */}
-          </ReactCSSTransitionGroup>
+          </ul>
       </div>
     )
   }

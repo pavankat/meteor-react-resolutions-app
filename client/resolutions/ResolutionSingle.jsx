@@ -10,6 +10,10 @@ export default class ResolutionSingle extends Component {
     Meteor.call('deleteResolution', this.props.resolution);
   }
 
+  cloneResolution(){
+    Meteor.call('cloneResolution', this.props.resolution)
+  }
+
   render(){
     const resolutionClass = this.props.resolution.complete ? "checked" : "";
     //console.log('resolutionClass', resolutionClass); //works
@@ -19,10 +23,13 @@ export default class ResolutionSingle extends Component {
 
     return (
       <li className={resolutionClass} id={this.props.resolution._id}>
+        <button className="btn-success" onClick={this.cloneResolution.bind(this)}>
+        clone
+        </button>
         <button className="btn-cancel" onClick={this.deleteResolution.bind(this)}>
         x
         </button>
-        
+
         <input type="checkbox" readOnly={true} checked={this.props.resolution.complete} onClick={this.toggleChecked.bind(this)} /> {/* makes sure we're utilizing the correct this */}
         {/* ${this.props.resolution._id} is string interpolation*/}
         <a href={`/resolutions/${this.props.resolution._id}`}>{this.props.resolution.text}</a>
