@@ -47,25 +47,23 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
 
     return (
       <div>
-        <h1>My Resolutions - {Session.get('test')}</h1>
+          <h1>My Resolutions {Session.get('test')}</h1>
 
-        <ResolutionsForm /> {/* we can copy and paste this more times throughout our app and it will work the same :) - that's the power of react components */}
+          <ResolutionsForm /> {/* we can copy and paste this more times throughout our app and it will work the same :) - that's the power of react components */}
 
-      {/* don't need this tag anymore because I tell the below tag to use ul and put the className onto it <ul className="resolutions">*/}
           <ReactCSSTransitionGroup
             component="ul"
             className="resolutions"
             transitionName="resolutionLoad"
             transitionEnterTimeout={600}
             transitionLeaveTimeout={400}>
-          {this.resolutions().map( (resolution) => {
-          {/* the key here needs to be there because React demands that everytime you loop and render something like this, it has a unique key for each item */}
-            return <ResolutionSingle key={resolution._id} resolution={resolution} />
-          })}
-          {/*<ResolutionSingle resolution={res[0]} />*/}
-          {/* comment this out: {res[0].text} */}
+              {this.resolutions().map( (resolution) => {
+              {/* the key here needs to be there because React demands that everytime you loop and render something like this, it has a unique key for each item */}
+                return <ResolutionSingle key={resolution._id} resolution={resolution} />
+              })}
+              {/*<ResolutionSingle resolution={res[0]} />*/}
+              {/* comment this out: {res[0].text} */}
           </ReactCSSTransitionGroup>
-        {/*</ul>*/}
       </div>
     )
   }

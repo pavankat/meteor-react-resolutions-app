@@ -1,9 +1,10 @@
 import React, {Component} from 'react'; //we can have access to it without having to say React.Component when we put the class word down
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 export default class About extends Component {
 
   setVar(){
-    Session.set('test', 'Hello');
+    Session.set('test', 'session works!');
   }
 
   //you can set session variables across different pages and components with meteor
@@ -15,7 +16,13 @@ export default class About extends Component {
   render(){
 
     return (
-      <div>
+      <ReactCSSTransitionGroup
+        component="div"
+        transitionName="route"
+        transitionEnterTimeout={600}
+        transitionAppearTimeout={600}
+        transitionLeaveTimeout={400}
+        transitionAppear={true}>
         <h1>About Us</h1>
 
         <p>Build good habits. Organize your life. Productive has all the tools you need to build a routine of positive, life changing habits. Productive gives you:</p>
@@ -35,7 +42,7 @@ export default class About extends Component {
         <button onClick={this.setVar}>Click Me to trigger something on the resolutions page</button>
 
         <button onClick={this.triggerLogin}>Want to login?</button>
-      </div>
+      </ReactCSSTransitionGroup>
     )
   }
 }
