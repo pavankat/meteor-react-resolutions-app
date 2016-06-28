@@ -3,10 +3,12 @@ import {render} from "react-dom";
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import ResolutionsForm from './ResolutionsForm'
 import ResolutionSingle from './ResolutionSingle'
+import MovieSingle from '../MovieSingle'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 //this won't work here if this file isn't in the root of the application. So we have to put a copy of it in it's own file in the server folder (weird)
 Resolutions = new Mongo.Collection("resolutions");
+Movies = new Mongo.Collection("movies");
 
 //by having default, whatever imports this file, you don't need to use curly brackets when importing it
 //we only use TrackerReact when we pull in data
@@ -20,7 +22,8 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
       //if we change what gets published in publish.js then what's available in the front end (see with ctrl + m) is limited to just that.
       subscription: {
         //resolutions : Meteor.subscribe('allResolutions')
-        resolutions : Meteor.subscribe('userResolutions')
+        resolutions : Meteor.subscribe('userResolutions'),
+        movies : Meteor.subscribe('userMovies')
       }
     }
   }
@@ -32,6 +35,11 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
 
   resolutions() {
     return Resolutions.find().fetch(); //only .find() returns a cursor (meteor), .fetch returns us the object
+  }
+
+  movies(){
+    console.log('hey theere')
+    return Movies.find().fetch(); //only .find() returns a cursor (meteor), .fetch returns us the object
   }
 
   ranResCrea() {
@@ -58,6 +66,13 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
           <button className="btn-success" onClick={this.ranResCrea}>
             Clone random resolution
           </button>
+
+          <ul>
+            {this.movies().map( (movie) => {
+              console.log(movie);
+              return <MovieSingle key={movie._id} movie={movie} />
+            })}
+          </ul>
 
           <ul>
               {this.resolutions().map( (resolution) => {

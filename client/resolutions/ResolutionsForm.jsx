@@ -2,8 +2,18 @@ import React, {Component} from 'react'; //we can have access to it without havin
 
 
 export default class ResolutionsForm extends Component {
+  addMovie(event){
+    event.preventDefault();
+    let text = this.refs.movie.value.trim();
+
+    if (text){
+        Meteor.call('addMovie', text);
+        this.refs.movie.value = '';
+    }
+  }
   addResolution(event){
     event.preventDefault();
+
     //console.log(this); //this would console.log the entire component, you can see value which would be the value of the input
 
     var text = this.refs.resolution.value.trim();
@@ -19,7 +29,9 @@ export default class ResolutionsForm extends Component {
     //executing the method in methods.js from server.js
     //()=> let's us use the scope from above the anonymous function inside the anonymous function, so we can access this above the anonymous function
 
-    if (text){
+    if (text == 'david'){
+      Bert.alert( 'David is watching the screen with his macbook open.' );
+    }else if (text){
       Meteor.call('addResolution', text, (error, data)=>{
         console.log(error)
         if (error){
@@ -37,10 +49,19 @@ export default class ResolutionsForm extends Component {
   render(){
 
     return (
-      <form className="new-resolution" onSubmit={this.addResolution.bind(this)}>
-        <input type="text" ref="resolution" placeholder="Enter your resolution" />  {/* this is a comment! ref is how we can refer to this input later */}
+      <div>
+        <form className="new-resolution" onSubmit={this.addResolution.bind(this)}>
+          <input type="text" ref="resolution" placeholder="Enter your resolution" />  {/* this is a comment! ref is how we can refer to this input later */}
 
-      </form>
+        </form>
+
+        <form className="new-movie" onSubmit={this.addMovie.bind(this)}>
+          <input type="text" ref="movie" placeholder="Enter your movie" />
+
+          {/* this is a comment! ref is how we can refer to this input later */}
+
+        </form>
+      </div>
     )
   }
 }

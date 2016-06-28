@@ -1,3 +1,41 @@
+# installation errors and how to fix them
+
+if you see an error like this
+```
+CracBook-Pro:meteor-react-resolutions-app-master swerve$ meteor
+[[[[[ ~/RCB/Week21/21.3/meteor-react-resolutions-app-master ]]]]]              
+=> Started proxy.                             
+=> Started MongoDB.                           
+=> Errors prevented startup:                                                    
+  While downloading msavin:jetsetter@2.0.0...:
+  error: ETIMEDOUT
+
+  While downloading npm-bcrypt@0.8.6_1...:
+  error: ETIMEDOUT
+
+=> Your application has errors. Waiting for file change.
+=> Meteor 1.3.4.1 is available. Update this project with 'meteor update'.
+```
+
+Then run meteor run
+```
+CracBook-Pro:meteor-react-resolutions-app-master swerve$ meteor run
+[[[[[ ~/RCB/Week21/21.3/meteor-react-resolutions-app-master ]]]]]
+
+=> Started proxy.                             
+=> Started MongoDB.                           
+=> Meteor 1.3.4.1 is available. Update this project with 'meteor update'.
+=> Started your app.                                                            
+
+=> App running at: http://localhost:3000/
+=> Client modified -- refreshing (x5)
+```
+
+-----
+
+
+# How I made this meteor app
+
 with meteor 1.3 - we can use npm packages
 
 npm init

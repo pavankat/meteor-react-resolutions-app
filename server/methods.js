@@ -1,5 +1,18 @@
 //allows us to call methods on the server from the client
 Meteor.methods({
+  addMovie(movie){
+    check(movie, String);
+
+    if (!Meteor.userId()){
+      throw new Meteor.Error('not-authorized')
+    }
+
+    Movies.insert({
+      text: movie,
+      user: Meteor.userId()
+    })
+
+  },
   addResolution(resolution){
 
     check(resolution, String)
