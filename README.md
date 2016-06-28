@@ -1,3 +1,22 @@
+# map of how this works
+
+routes.js
+  so we take in request and go to that file and render the component specified there
+    inside of that component, we could be rendering other components.
+
+    let's say you have a form that's rendered in the component
+      you can take the values from the form and insert that into your mongo collection using Meteor.call('methodNameGoesHere')/ methodNameGoesHere is a method inside of methods.js in your server folder.
+
+
+because we have autopublish removed - we have to set up publications and subscriptions to tell what is available to our browser
+  we have to setup a publication in publish.js in our server folder saying what is allowed to go on the browser
+
+  then in our jsx file in the client folder we have to subscribe to that publication and then we used this subscription to display the data from the collection onto the page.
+
+
+
+
+
 # installation errors and how to fix them
 
 if you see an error like this
