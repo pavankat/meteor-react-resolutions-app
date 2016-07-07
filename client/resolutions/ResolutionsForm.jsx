@@ -17,7 +17,6 @@ export default class ResolutionsForm extends Component {
     //console.log(this); //this would console.log the entire component, you can see value which would be the value of the input
 
     var text = this.refs.resolution.value.trim();
-    console.log(text)
 
     //by taking out insecure, you can't do this anymore
     // Resolutions.insert({
@@ -33,12 +32,16 @@ export default class ResolutionsForm extends Component {
       Bert.alert( 'David is watching the screen with his macbook open.' );
     }else if (text){
       Meteor.call('addResolution', text, (error, data)=>{
-        console.log(error)
+        console.log('this is the error', error)
         if (error){
-          Bert.alert( 'You must be logged in to add a resolution', 'danger', 'fixed-top', 'fa-frown-o' );
-        }else {
-          this.refs.resolution.value = ""; //clear the input after we submit
+          Bert.alert( 'no rambo', 'danger', 'fixed-top', 'fa-frown-o' );
         }
+
+        // if (error){
+        //   Bert.alert( 'You must be logged in to add a resolution', 'danger', 'fixed-top', 'fa-frown-o' );
+        // }else {
+        //   this.refs.resolution.value = ""; //clear the input after we submit
+        // }
       })
     }else{
       Bert.alert( 'You must type some text in to add a resolution', 'danger', 'fixed-top', 'fa-frown-o' );

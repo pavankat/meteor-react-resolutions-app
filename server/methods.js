@@ -1,5 +1,18 @@
 //allows us to call methods on the server from the client
 Meteor.methods({
+  addSong(song){
+    check(song, String);
+
+    if (!Meteor.userId()){
+      throw new Meteor.Error('not-authorized')
+    }
+
+    Songs.insert({
+      text: song,
+      user: Meteor.userId()
+    })
+
+  },
   addMovie(movie){
     check(movie, String);
 
@@ -20,6 +33,10 @@ Meteor.methods({
     //don't let someone not loggedin insert a resolution
     if (!Meteor.userId()){
       throw new Meteor.Error('not-authorized')
+    }
+
+    if (resolution == 'rambo'){
+      throw new Meteor.Error('no-rambo')
     }
 
     Resolutions.insert({

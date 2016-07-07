@@ -5,10 +5,13 @@ import ResolutionsForm from './ResolutionsForm'
 import ResolutionSingle from './ResolutionSingle'
 import MovieSingle from '../MovieSingle'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import SongForm from '../SongForm.jsx'
+import SongSingle from '../SongSingle.jsx'
 
 //this won't work here if this file isn't in the root of the application. So we have to put a copy of it in it's own file in the server folder (weird)
 Resolutions = new Mongo.Collection("resolutions");
 Movies = new Mongo.Collection("movies");
+Songs = new Mongo.Collection("songs");
 
 //by having default, whatever imports this file, you don't need to use curly brackets when importing it
 //we only use TrackerReact when we pull in data
@@ -23,7 +26,8 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
       subscription: {
         //resolutions : Meteor.subscribe('allResolutions')
         resolutions : Meteor.subscribe('userResolutions'),
-        movies : Meteor.subscribe('userMovies')
+        movies : Meteor.subscribe('userMovies'),
+        songs: Meteor.subscribe('userSongs')
       }
     }
   }
@@ -40,6 +44,10 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
   movies(){
     console.log('hey theere')
     return Movies.find().fetch(); //only .find() returns a cursor (meteor), .fetch returns us the object
+  }
+
+  songs(){
+    return Songs.find().fetch();
   }
 
   ranResCrea() {
@@ -61,6 +69,8 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
       <div>
           <h1>My Resolutions {Session.get('david')}</h1>
 
+          <SongForm />
+
           <ResolutionsForm /> {/* we can copy and paste this more times throughout our app and it will work the same :) - that's the power of react components */}
 
           <button className="btn-success" onClick={this.ranResCrea}>
@@ -71,6 +81,12 @@ export default class ResolutionsWrapper extends TrackerReact(React.Component) {
             {this.movies().map( (movie) => {
               console.log(movie);
               return <MovieSingle key={movie._id} movie={movie} />
+            })}
+          </ul>
+
+          <ul>
+            {this.songs().map( (song) => {
+              return <SongSingle key={song._id} song={song} />
             })}
           </ul>
 
